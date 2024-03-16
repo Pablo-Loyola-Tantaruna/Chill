@@ -9,14 +9,42 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.zetta.data</groupId>
-	<artifactId>lowerPrices</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>thingsPrices</name>
-	<description>Use is to show things from e-commerces</description>
+	<artifactId>product-management</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Service Product Management</name>
+	<description>Gestión de Inventarios para E-Commerce</description>
 	<properties>
-		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.4</spring-cloud.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<inceptionYear>2024</inceptionYear>
+
+	<developers>
+		<developer>
+			<id>Ployola</id>
+			<name>Sergio Loyola</name>
+			<email>pabloloyolat@gmail.com</email>
+			<organization>Zetta</organization>
+			<timezone>America/Lima</timezone>
+			<roles>
+				<role>Software Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<ciManagement>
+		<system>Bamboo</system>
+	</ciManagement>
+
+	<issueManagement>
+		<system>Jira</system>
+	</issueManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -42,7 +70,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
