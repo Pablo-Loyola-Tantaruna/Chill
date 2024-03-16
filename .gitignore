@@ -1,4 +1,7 @@
 target/
+src/test/resources/config/bootstrap-dev.yml
+src/main/resources/config/bootstrap-local.yml
+src/main/resources/config/bootstrap-dev.yml
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

@@ -1,4 +1,4 @@
-package com.zetta.data.lowerPrices;
+package com.zetta.fuxt.service.product.management;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProductManagement {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProductManagement.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ProductManagement.class, args);
+    }
 
 }
