@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: @project.artifactId@
+  cloud:
+    config:
+      name: @project.artifactId@
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  main:
+    allow-bean-definition-overriding: true
+    lazy-initialization: true
+  webflux:
+    base-path: '/api/v1/products'
+    static-path-pattern: '/**'
+  cache:
+    type: redis
+info:
+  project:
+    name: '@project.artifactId@'
+    description: '@project.description@'
+    version: '@project.version@'
+    type: '@project.packaging@'
+    artifact-id: '@project.artifactId@'
+    group-id: '@project.groupId@'
+    java:
+      source: '@java.version@'
+      target: '@java.version@'
+springdoc:
+  api-docs:
+    enabled: true
+    path: /openapi
+  remove-broken-reference-definitions: false
+application:
+  openapi:
+    info:
+      title: '@project.artifactId@'
+      description: '@project.description@'
+      version: '@project.version@'
+  obfuscation-rules:
+    enabled: false
+    default-regex: '.*password.*|.*secret.*|.*key.*|.*token.*|.*credential.*'
+    default-mask: '********'
+    sensitive-fields:
+      - name: 'Authorization'
+        config[0]:
+          regExp: '^(Bearer|s+)(\S+)$'
+          replacement: '$1[OFUSCADO]'
+          active: true
+  obfuscation:
+    enabled: false
+    default-regex: '.*password.*|.*secret.*|.*key.*|.*token.*|.*credential.*'
+    default-mask: '********'
+    specific-sensitive-fields:
+      - name: 'Authorization'
+        config[0]:
+          regExp: '^\d+(\d{4})$'
+          replacement: '$1[OFUSCADO]'
+          active: true
+management:
+  endpoints:
+    web:
+      base-path: '/actuator'

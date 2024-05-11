@@ -1,10 +1,10 @@
-package com.zetta.data.lowerPrices;
+package com.zetta.fuxt.service.product.management;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ThingsPricesApplicationTests {
+class ProductManagementApplicationTests {
 
 	@Test
 	void contextLoads() {

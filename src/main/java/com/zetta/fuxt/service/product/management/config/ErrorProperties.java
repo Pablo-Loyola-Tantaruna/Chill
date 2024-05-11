@@ -1,15 +1,19 @@
 package com.zetta.fuxt.service.product.management.config;
 
-import com.zetta.fuxt.service.product.management.util.header.RequestHeaderObjectResolve;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 /**
- * <p> Configuración de los headers de las peticiones HTTP.</p>
- * <p><b>Class</b>: HeaderConfig</p>
+ * <p> Configuración de los errores de la aplicación.</p>
+ * <p><b>Class</b>: ErrorProperties</p>
  * <p><b>Package</b>: com.zetta.fuxt.service.product.management.config</p>
  * <p><b>Project</b>: products-service</p>
  * <p><b>Version</b>: 1.0.0</p>
@@ -31,11 +35,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * </div>
  * <p><b>Version</b>: 1.0.0</p>
  */
+@RefreshScope
 @Configuration
-public class HeaderConfig implements WebMvcConfigurer {
+@ConfigurationProperties(prefix = "app.error")
+@Getter
+@Setter
+@ToString
+public class ErrorProperties {
 
-  @Override
-  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-    resolvers.add(new RequestHeaderObjectResolve());
-  }
+  private Map<String, List<String>> codeDescriptionType = new HashMap<>();
 }

@@ -1,0 +1,54 @@
+version: "3"
+services:
+  ###POSTGRESS Inventory
+    db-inventory-spm:
+      container_name: db-inventory-spm
+      image: postgres:15.2
+      restart: unless-stopped
+      environment:
+        POSTGRES_DB: db-inventory
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: newpassword
+      ports:
+        - "5432:5432"
+      expose:
+        - "5432"
+      command: ["postgres", "-p", "5432"]
+    ##Zookerper
+    zookeper:
+      container_name: zookeeper-spm
+      image: confluentinc/cp-zookeeper:7.4.0
+      environment:
+        ZOOKEEPER_CLIENT_PORT: 2181
+        ZOOKEEPER_TICK_TIME: 2000
+
+    ###Mongo Inventory
+    db-mongo-spm:
+      container_name: db-mongo-spm
+      image: mongo:7.0.9
+      restart: unless-stopped
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: 1234567890
+        MONGO_INITDB_DATABASE: inventory
+      ports:
+        - "27017:27017"
+      expose:
+        - "27017"
+
+    ##Kafka
+    kafka:
+      container_name: kafka-spm
+      image: confluentinc/cp-kafka:7.4.0
+      depends_on:
+          - zookeper
+      ports:
+        - "9092:9092"
+      environment:
+        KAFKA_BROKER_ID: 1
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+        KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
