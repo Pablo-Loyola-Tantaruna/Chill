@@ -2,6 +2,7 @@ package com.zetta.fuxt.service.product.management.business;
 
 import com.zetta.fuxt.service.product.management.model.api.createproduct.CreateProductRequest;
 import com.zetta.fuxt.service.product.management.model.header.ApiHeader;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 
 /**
@@ -50,4 +51,22 @@ public interface ProductManagementService {
    * @return String
    */
   Single<String> createProductNoSql(CreateProductRequest request);
+
+  /**
+   * M&eacute;todo que permite la eliminaci&oacute;n de
+   * un producto.
+   *
+   * @param idProduct Identificador del producto a eliminar.
+   * @return Completable
+   */
+  Completable deleteProductSql(String idProduct);
+
+  /**
+   * M&eacute;todo que permite la eliminaci&oacute;n de
+   * un producto.
+   *
+   * @param idProduct Identificador del producto a eliminar.
+   * @return Completable
+   */
+  Completable deleteProductNoSql(String idProduct);
 }

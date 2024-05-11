@@ -48,7 +48,8 @@ public class MongoDbImpl implements DbClient<Document, Object> {
    */
   @Override
   public Single<Document> execute(Object object) {
-    return Single.fromPublisher(mongoCollection.find(Document.parse(new Gson().toJson(object))));
+    return Single.fromPublisher(mongoCollection.insertOne(Document.parse(new Gson().toJson(object))))
+            .map(success -> Document.parse(new Gson().toJson(success)));
   }
 
 }

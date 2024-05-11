@@ -15,12 +15,14 @@ services:
         - "5432"
       command: ["postgres", "-p", "5432"]
     ##Zookerper
-    zookeper:
+    zookeper-spm:
       container_name: zookeeper-spm
       image: confluentinc/cp-zookeeper:7.4.0
       environment:
-        ZOOKEEPER_CLIENT_PORT: 2181
+        ZOOKEEPER_CLIENT_PORT: 2182
         ZOOKEEPER_TICK_TIME: 2000
+      ports:
+        - "2182:2182"
 
     ###Mongo Inventory
     db-mongo-spm:
@@ -37,18 +39,19 @@ services:
         - "27017"
 
     ##Kafka
-    kafka:
+    kafka-spm:
       container_name: kafka-spm
       image: confluentinc/cp-kafka:7.4.0
       depends_on:
-          - zookeper
+        - zookeper-spm
       ports:
         - "9092:9092"
+        - "9093:9093"
       environment:
-        KAFKA_BROKER_ID: 1
-        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        KAFKA_BROKER_ID: 2
+        KAFKA_ZOOKEEPER_CONNECT: zookeper-spm:2182
         KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_HOST://localhost:9093
         KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
         KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
         KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1

@@ -7,6 +7,7 @@ import com.zetta.fuxt.service.product.management.kafka.producer.ProductKfkProduc
 import com.zetta.fuxt.service.product.management.model.api.createproduct.CreateProductRequest;
 import com.zetta.fuxt.service.product.management.util.queries.UtilQueryGenerator;
 import io.r2dbc.spi.Result;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -81,5 +82,24 @@ public class ProductManagementServiceImpl implements ProductManagementService {
         .doOnSuccess(result -> log.info("Product created successfully - NOSQL"))
         .doOnError(error -> log.error("Error while creating product no-sql: " + error))
         .map(result -> "Product created successfully - NOSQL");
+  }
+
+  @Override
+  public Completable deleteProductNoSql(String idProduct) {
+    return null;
+//    return dbClientNoSql.execute(idProduct)
+//        .doOnSuccess(result -> log.info("Product deleted successfully"))
+//        .doOnComplete();
+//        .doOnError(error -> log.error("Error while deleting product: " + error));
+  }
+
+  @Override
+  public Completable deleteProductSql(String idProduct) {
+    //TODO: Implementar la eliminación de un producto en la base de datos SQL.
+    return null;
+//    log.info("ProductManagementServiceImpl.deleteProduct");
+//    return dbClientSql.execute(queryGenerator.deleteQueryGenerator(idProduct))
+//        .doOnComplete(() -> log.info("Product deleted successfully"))
+//        .doOnError(error -> log.error("Error while deleting product: " + error));
   }
 }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * <p> Clase que implementa la interfaz CreateProductService.</p>
  * <p> Esta clase se encarga de gestionar la creación de productos.</p>
- * <p><b>Class</b>: CreateProductServiceImpl</p>
+ * <p><b>Class</b>: CreateProductService</p>
  * <p><b>Package</b>: com.zetta.fuxt.service.product.management.business.impl</p>
  * <p><b>Project</b>: products-service</p>
  * <p><b>Version</b>: 1.0.0</p>
